@@ -264,6 +264,7 @@
     f:SetScript("OnDragStop", function(self) self:StopMovingOrSizing() end)
   end
 
+  
   --gen castbar
   lib.gen_castbar = function(f)
 
@@ -302,6 +303,7 @@
     local t = lib.gen_fontstring(s, cfg.font, 16, "THINOUTLINE")
     t:SetPoint("RIGHT", -2, 0)
     txt:SetPoint("RIGHT", t, "LEFT", -5, 0)
+	
 
     --icon
     local i = s:CreateTexture(nil, "ARTWORK")
@@ -331,8 +333,13 @@
     f.Castbar.Text = txt
     f.Castbar.Time = t
     f.Castbar.Icon = i
+	
   end
 
+  	lib.CustomCastTimeText = function(self, duration)
+        self.Time:SetText(("%.1f"):format(self.channeling and duration or self.max - duration, self.max))
+    end
+  
   lib.gen_portrait = function(f)
     if cfg.hideportraits then return end
     local p = CreateFrame("PlayerModel", nil, f)
@@ -420,7 +427,8 @@
     b = CreateFrame("Frame", nil, f)
     b.size = 20
     if f.mystyle == "target" then
-      b.num = 4
+      b.num = 9
+	  b.size = 30
     elseif f.mystyle == "player" then
       b.num = 10
     elseif f.mystyle == "raid" or f.mystyle == "raid40" then
@@ -435,6 +443,8 @@
 	if f.mystyle == "raid" or f.mystyle == "raid40" then
 		b.CustomFilter	= lib.CustomAuraFilterRaid
 		b:SetPoint("TOPLEFT", f.Power, "BOTTOMLEFT", 0, 20)
+	elseif f.mystyle == "target" then
+		b:SetPoint("TOPLEFT", f.Power, "BOTTOMLEFT", 0, -15)
 	else
 		b:SetPoint("TOPLEFT", f.Power, "BOTTOMLEFT", 0, -5)
 	end

@@ -17,6 +17,7 @@
   -----------------------------
   -- STYLE FUNCTIONS
   -----------------------------
+  
 
   --init func
   local initHeader = function(self)
@@ -51,6 +52,15 @@
     self.Health.bg.multiplier = 0.3
     self.Power.colorPower = true
     self.Power.bg.multiplier = 0.3
+	lib.gen_castbar(self)
+	
+    self.Castbar.CustomTimeText = lib.CustomCastTimeText
+	
+	local Combat = self.Health:CreateTexture(nil, "OVERLAY")
+	Combat:SetSize(16, 16)
+	Combat:SetPoint('TOP', self, "TOP", 5, 0)
+	-- Register it with oUF
+	self.Combat = Combat
 	
 	local ClassIcons = {}
 	for index = 1, 5 do
