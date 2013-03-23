@@ -1,0 +1,14 @@
+## Interface: 50200
+## Title: oUF_Lanuigi
+## Author: Lanuigi
+## Notes: ouf_Lan layout based off ouF_Simple by zork
+## Dependencies: oUF, rLib
+
+config.lua
+
+##modules\oUF_DebuffHighlight.lua
+
+core\slashcmd.lua
+core\tags.lua
+core\core.lua
+core\style.lua
