@@ -1,4 +1,4 @@
-## Interface: 50200
+## Interface: 50300
 ## Title: oUF_Lanuigi
 ## Author: Lanuigi
 ## Notes: ouf_Lan layout based off ouF_Simple by zork
