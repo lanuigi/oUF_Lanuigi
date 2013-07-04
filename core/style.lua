@@ -57,8 +57,8 @@
     self.Castbar.CustomTimeText = lib.CustomCastTimeText
 	
 	local Combat = self.Health:CreateTexture(nil, "OVERLAY")
-	Combat:SetSize(16, 16)
-	Combat:SetPoint('TOP', self, "TOP", 5, 0)
+	Combat:SetSize(32, 32)
+	Combat:SetPoint('TOP', self, "TOP", -25, 0)
 	-- Register it with oUF
 	self.Combat = Combat
 	
@@ -67,7 +67,7 @@
 		local Icon = self:CreateTexture(nil, 'BACKGROUND')
 		-- Position and size.
 		Icon:SetSize(24, 24)
-		Icon:SetPoint('TOPLEFT', self, 'BOTTOMLEFT', index * (2 * Icon:GetWidth())-28, 100)
+		Icon:SetPoint('TOPLEFT', self, 'BOTTOMLEFT', index * (1.4 * Icon:GetWidth())-28, 100)
 		Icon:SetTexture("Interface\\AddOns\\oUF_Lanuigi\\media\\statusbar2")
 		local class, classFileName = UnitClass("player");
 		local color = RAID_CLASS_COLORS[classFileName]
@@ -291,10 +291,9 @@
 	
   local function CreateArenaStyle(self)
     --style specific stuff
-    self.width = 60
-    self.height = 35
+    self.width = 45
+    self.height = 25
     self.mystyle = "arena"
-    self.hptag = "[Lanuigi:hpraid]"
     --init
     initHeader(self)
     --stuff
@@ -386,7 +385,7 @@
 		else
 			arena[i] = oUF:Spawn("arena"..i, "oUF_LanuigiArena"..i);
 			arena[i]:SetPoint("CENTER", UIParent, "CENTER", 0, 0);
-			arena[i]:SetSize(60, 35);
+			arena[i]:SetSize(45, 25);
 		end
 	end
 	
