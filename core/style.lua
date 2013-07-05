@@ -281,6 +281,34 @@
 	self.LFDRole = LFDRole
   end
   
+	local function CreateRaid25Style(self)
+    --style specific stuff
+    self.width = 30
+    self.height = 15
+    self.mystyle = "raid25"
+    --init
+    initHeader(self)
+    --stuff
+    self.Health.colorDisconnected = true
+    self.Health.colorClass = true
+    self.Health.colorReaction = true
+    self.Health.colorHealth = true
+    self.Health.bg.multiplier = 0.3
+    self.Power.colorPower = true
+    self.Power.bg.multiplier = 0.3
+	
+	self.Range = {
+		insideAlpha = 1,
+		outsideAlpha = 0.2
+	}	
+	
+	local LFDRole = self.Health:CreateTexture(nil, "OVERLAY")
+	LFDRole:SetSize(16, 16)
+	LFDRole:SetPoint("CENTER", self, "CENTER", 0, 0)
+	-- Register it with oUF
+	self.LFDRole = LFDRole
+  end
+  
     local function CreateRaid40Style(self)
     --style specific stuff
     self.width = 30
@@ -455,7 +483,7 @@
 
     --setup for 25 man raid
 
-    oUF:RegisterStyle("oUF_LanuigiRaid25", CreateRaidStyle)
+    oUF:RegisterStyle("oUF_LanuigiRaid25", CreateRaid25Style)
     oUF:SetActiveStyle("oUF_LanuigiRaid25")
 
     local raid25 = oUF:SpawnHeader(
@@ -468,8 +496,8 @@
       "showRaid",           true,
       "point",              "LEFT",
       "yOffset",            0,
-      "xoffset",            28,
-      "columnSpacing",      37,
+      "xoffset",            10,
+      "columnSpacing",      17,
       "columnAnchorPoint",  "TOP",
       "groupFilter",        "1,2,3,4,5,6,7,8",
       "groupBy",            "GROUP",
@@ -478,8 +506,8 @@
       "maxColumns",         8,
       "unitsPerColumn",     5,
       "oUF-initialConfigFunction", [[
-        self:SetHeight(30)
-        self:SetWidth(45)
+        self:SetHeight(20)
+        self:SetWidth(30)
       ]]
     )
     raid25:SetPoint("CENTER",UIParent,"CENTER",0,0)

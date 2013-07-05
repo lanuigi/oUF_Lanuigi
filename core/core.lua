@@ -171,10 +171,14 @@
 			name:SetPoint("LEFT", f.Health, "LEFT", 2, 32)
 			name:SetJustifyH("LEFT")
 		elseif f.mystyle == "raid" then
-			name = lib.gen_fontstring(f.Health, cfg.font, 10, "THINOUTLINE")
+			name = lib.gen_fontstring(f.Health, cfg.font, 9, "THINOUTLINE")
 			name:SetPoint("LEFT", f.Health, "LEFT", 0, 26)
 			name:SetJustifyH("LEFT")
 		elseif f.mystyle == "party" then
+			name = lib.gen_fontstring(f.Health, cfg.font, 10, "THINOUTLINE")
+			name:SetPoint("LEFT", f.Health, "LEFT", 0, 12)
+			name:SetJustifyH("LEFT")
+		elseif f.mystyle == "raid25" then
 			name = lib.gen_fontstring(f.Health, cfg.font, 10, "THINOUTLINE")
 			name:SetPoint("LEFT", f.Health, "LEFT", 0, 12)
 			name:SetJustifyH("LEFT")
@@ -201,7 +205,10 @@
     else
 	  if f.mystyle ~= "player" and f.mystyle ~= "target" and f.mystyle ~= "pet" and f.mystyle ~= "raid" and f.mystyle ~= "focus" and f.mystyle ~= "party" and f.mystyle ~="raid40" then
       --this will make the name go "..." when its to long
-		if f.mystyle == "raid40" then
+		if f.mystyle == "raid25" then
+			name:SetPoint("RIGHT", hpval, "LEFT", 4, 0)
+			hpval:SetJustifyH("RIGHT")
+		elseif f.mystyle == "raid40" then
 			name:SetPoint("RIGHT", hpval, "LEFT", 4, 0)
 			hpval:SetJustifyH("RIGHT")
 		elseif f.mystyle == "tot" then
@@ -222,7 +229,7 @@
     if f.hptag then
 		f:Tag(hpval, f.hptag)
     else
-		if f.mystyle == "raid40" then
+		if f.mystyle == "raid40" or f.mystyle == "raid25" then
 		
 		else
 			f:Tag(hpval, "[Lanuigi:hpvalue]")
@@ -270,11 +277,11 @@
 
     local s = CreateFrame("StatusBar", "oUF_LanuigiCastbar"..f.mystyle:sub(1,1):upper()..f.mystyle:sub(2), f)
     s:SetHeight(25)
-    s:SetWidth(200)
+    s:SetWidth(140)
     if f.mystyle == "player" then
       --lib.moveme(s)
       rCreateDragFrame(s, dragFrameList, -2 , true) --frame, dragFrameList, inset, clamp
-      s:SetPoint("CENTER",UIParent,0,-50)
+      s:SetPoint("CENTER",UIParent, "CENTER", 0, 50)
     elseif f.mystyle == "target" then
       --lib.moveme(s)
       rCreateDragFrame(s, dragFrameList, -2 , true) --frame, dragFrameList, inset, clamp
@@ -431,7 +438,7 @@
 	  b.size = 30
     elseif f.mystyle == "player" then
       b.num = 10
-    elseif f.mystyle == "raid" or f.mystyle == "raid40" then
+    elseif f.mystyle == "raid" or f.mystyle == "raid40" or f.mystyle == "raid25" then
 	  b.num = 1
 	else
       b.num = 5
@@ -440,7 +447,7 @@
     b.onlyShowPlayer = false
     b:SetHeight((b.size+b.spacing)*4)
     b:SetWidth(f.width)
-	if f.mystyle == "raid" or f.mystyle == "raid40" then
+	if f.mystyle == "raid" or f.mystyle == "raid40" or f.mstyle == "raid25" then
 		b.CustomFilter	= lib.CustomAuraFilterRaid
 		b:SetPoint("TOPLEFT", f.Power, "BOTTOMLEFT", 0, 20)
 	elseif f.mystyle == "target" then
