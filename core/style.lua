@@ -62,6 +62,10 @@
 	-- Register it with oUF
 	self.Combat = Combat
 	
+	local class, classFileName = UnitClass("player");
+	if class ~= 'Warlock' and class ~= 'Priest' and class ~= 'Monk' and class ~= 'Paladin' then
+	
+	else
 	local ClassIcons = {}
 	for index = 1, 5 do
 		local Icon = self:CreateTexture(nil, 'BACKGROUND')
@@ -77,6 +81,22 @@
 	-- Register with oUF
 	self.ClassIcons = ClassIcons
 	
+	local Embers = {}
+	for index = 1, 5 do
+		local Icon = self:CreateTexture(nil, 'BACKGROUND')
+		-- Position and size.
+		Icon:SetSize(24, 24)
+		Icon:SetPoint('TOPLEFT', self, 'BOTTOMLEFT', index * (1.4 * Icon:GetWidth())-28, 120)
+		Icon:SetTexture("Interface\\AddOns\\oUF_Lanuigi\\media\\statusbar2")
+		local class, classFileName = UnitClass("player");
+		local color = RAID_CLASS_COLORS[classFileName]
+		Icon:SetVertexColor(color.r, color.g, color.b, 1)
+		Embers[index] = Icon
+	end
+	-- Register with oUF
+	self.Embers = Embers
+	end
+
 	local PvP = self.Health:CreateTexture(nil, 'OVERLAY')
 	PvP:SetSize(64, 64)
 	PvP:SetPoint('TOPLEFT', self, 'TOPLEFT', -18, 0)
